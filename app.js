@@ -1,6 +1,7 @@
 const express = require ("express");
 const db = require('./utils/database');
 const ToDo = require('./models/to.do.models');
+const cors = require('cors');
 require('dotenv').config();
 ToDo;
 
@@ -15,7 +16,9 @@ db.authenticate()
 db.sync()
 .then(() => console.log('Base de datos sincronizada'))
 const app = express();
+
 app.use(express.json());
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.send("To Do List")
